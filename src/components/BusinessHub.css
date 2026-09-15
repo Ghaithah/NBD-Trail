@@ -142,6 +142,49 @@
   border-color: #93c5fd;
 }
 
+.bh-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.bh-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.bh-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #d1d5db;
+  border-radius: 999px;
+  transition: 0.15s;
+}
+
+.bh-switch-slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.15s;
+}
+
+.bh-switch input:checked + .bh-switch-slider {
+  background-color: #1d4ed8;
+}
+
+.bh-switch input:checked + .bh-switch-slider::before {
+  transform: translateX(20px);
+}
+
 @media (max-width: 900px) {
   .bh-body {
     flex-direction: column;
