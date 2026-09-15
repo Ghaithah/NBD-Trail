@@ -1,16 +1,10 @@
-
-import logo from './logo.svg';
 import './App.css';
-import MainApp from './components/MainApp';
-import LoadData from './RestApp';
- 
+import BusinessHub from './components/BusinessHub';
 
 function App() {
   return (
     <div className="App">
-       
-       <MainApp/>
-       <LoadData/>
+      <BusinessHub/>
     </div>
   );
 }
