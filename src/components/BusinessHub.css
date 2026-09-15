@@ -291,6 +291,7 @@
   background: #f8fafc;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
+  max-width: 760px;
 }
 
 .bh-publish-btn {
@@ -319,6 +320,9 @@
   }
   .bh-preview-col {
     width: 100%;
+  }
+  .bh-publish-bar {
+    max-width: 100%;
   }
 }
 
