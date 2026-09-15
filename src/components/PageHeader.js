@@ -1,4 +1,19 @@
+const HEADER_COPY = {
+  service: {
+    title: "Add to your storefront. Get found by UAE buyers.",
+    subtitle:
+      "Your storefront is visible to verified UAE businesses on SME Connect. Add a service or product — buyers can request a quote or buy now if you make it standardized.",
+  },
+  rfq: {
+    title: "Source it once. Get ranked quotes in minutes.",
+    subtitle:
+      "Post your requirement and SME Connect AI ranks up to 50 verified UAE suppliers by fit. Free for all UAE SMEs. Embedded financing available at acceptance.",
+  },
+};
+
 function PageHeader({ activeTab, onTabChange }) {
+  const copy = HEADER_COPY[activeTab] || HEADER_COPY.service;
+
   return (
     <div className="mb-4">
       <nav className="small text-muted mb-2">
@@ -6,11 +21,9 @@ function PageHeader({ activeTab, onTabChange }) {
         <span>New post</span>
       </nav>
 
-      <h2 className="fw-bold mb-1">Add to your storefront. Get found by UAE buyers.</h2>
+      <h2 className="fw-bold mb-1">{copy.title}</h2>
       <p className="text-muted mb-4" style={{ maxWidth: 720 }}>
-        Your storefront is visible to verified UAE businesses on SME Connect. Add a
-        service or product — buyers can request a quote or buy now if you make it
-        standardized.
+        {copy.subtitle}
       </p>
 
       <div className="d-flex gap-3 flex-wrap">

@@ -121,9 +121,15 @@
   align-items: flex-start;
 }
 
-.bh-form-col {
+.bh-form-stack {
   flex: 1 1 460px;
   max-width: 760px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.bh-form-col {
   min-width: 0;
 }
 
@@ -138,6 +144,11 @@
   border-radius: 12px;
   padding: 20px 24px;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.bh-card-glow {
+  background: linear-gradient(180deg, #dbe7ff 0%, #ffffff 65%);
+  border-color: #dbeafe;
 }
 
 .bh-card-title {
@@ -233,6 +244,39 @@
 
 .bh-switch input:checked + .bh-switch-slider::before {
   transform: translateX(20px);
+}
+
+.bh-checkbox {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.bh-checkbox input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.bh-checkbox-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  font-size: 0.7rem;
+  transition: 0.15s;
+}
+
+.bh-checkbox input:checked + .bh-checkbox-box {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  color: #fff;
 }
 
 .bh-badge-soft {
@@ -336,7 +380,7 @@
   background: #f8fafc;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  max-width: 760px;
+  width: 100%;
 }
 
 .bh-publish-btn {
@@ -359,6 +403,163 @@
   cursor: not-allowed;
 }
 
+/* Post an RFQ: date picker */
+
+.bh-datefield {
+  position: relative;
+}
+
+.bh-date-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  text-align: left;
+  background: #fff;
+  cursor: pointer;
+}
+
+.bh-date-trigger i {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.bh-datepicker-popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+  padding: 16px;
+  width: 280px;
+}
+
+.bh-datepicker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.bh-datepicker-nav {
+  border: none;
+  background: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
+  cursor: pointer;
+}
+
+.bh-datepicker-nav:hover {
+  background: #eef2ff;
+  color: #1d4ed8;
+}
+
+.bh-calendar-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-bottom: 6px;
+}
+
+.bh-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.bh-calendar-day {
+  border: none;
+  background: none;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.bh-calendar-day:hover:not(.empty) {
+  background: #eef2ff;
+}
+
+.bh-calendar-day.today {
+  border: 1px solid #1d4ed8;
+}
+
+.bh-calendar-day.selected {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.bh-calendar-day.empty {
+  cursor: default;
+}
+
+.bh-quick-btn {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #374151;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.bh-quick-btn:hover {
+  border-color: #93c5fd;
+}
+
+.bh-quick-btn.primary {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  color: #fff;
+}
+
+.bh-quick-btn.primary:hover {
+  background: #1e40af;
+}
+
+/* Post an RFQ: attachments + AI match preview */
+
+.bh-upload-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px dashed #d1d5db;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+  cursor: pointer;
+  margin: 0;
+}
+
+.bh-upload-box:hover {
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.bh-match-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
 @media (max-width: 1100px) {
   .bh-content-row {
     flex-direction: column;
@@ -366,7 +567,7 @@
   .bh-preview-col {
     width: 100%;
   }
-  .bh-publish-bar {
+  .bh-form-stack {
     max-width: 100%;
   }
 }
@@ -377,5 +578,13 @@
   }
   .bh-sidebar {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .bh-datepicker-popup {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

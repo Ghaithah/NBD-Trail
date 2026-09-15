@@ -31,8 +31,8 @@ function PostServiceTab() {
   };
 
   return (
-    <>
-      <div className="bh-content-row">
+    <div className="bh-content-row">
+      <div className="bh-form-stack">
         <PostServiceForm
           name={name}
           setName={(v) => {
@@ -90,42 +90,43 @@ function PostServiceTab() {
             setPublished(false);
           }}
         />
-        <PostServicePreview
-          name={name}
-          category={category}
-          description={description}
-          quoteOnly={quoteOnly}
-          minPrice={minPrice}
-          maxPrice={maxPrice}
-          unit={unit}
-          leadTime={leadTime}
-          status={status}
-          buyNow={buyNow}
-        />
+
+        <div className="bh-publish-bar">
+          {published ? (
+            <div className="small fw-semibold text-success">
+              <i className="bi bi-check-circle-fill me-2"></i>
+              Published to your storefront.
+            </div>
+          ) : (
+            <div className="small text-muted">
+              Listings appear on your verified storefront immediately.
+            </div>
+          )}
+          <button
+            type="button"
+            className="btn bh-publish-btn"
+            disabled={!isValid}
+            onClick={handlePublish}
+          >
+            <i className="bi bi-cloud-upload me-2"></i>
+            Publish to storefront
+          </button>
+        </div>
       </div>
 
-      <div className="bh-publish-bar">
-        {published ? (
-          <div className="small fw-semibold text-success">
-            <i className="bi bi-check-circle-fill me-2"></i>
-            Published to your storefront.
-          </div>
-        ) : (
-          <div className="small text-muted">
-            Listings appear on your verified storefront immediately.
-          </div>
-        )}
-        <button
-          type="button"
-          className="btn bh-publish-btn"
-          disabled={!isValid}
-          onClick={handlePublish}
-        >
-          <i className="bi bi-cloud-upload me-2"></i>
-          Publish to storefront
-        </button>
-      </div>
-    </>
+      <PostServicePreview
+        name={name}
+        category={category}
+        description={description}
+        quoteOnly={quoteOnly}
+        minPrice={minPrice}
+        maxPrice={maxPrice}
+        unit={unit}
+        leadTime={leadTime}
+        status={status}
+        buyNow={buyNow}
+      />
+    </div>
   );
 }
 

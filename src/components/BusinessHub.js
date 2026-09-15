@@ -3,6 +3,7 @@ import TopNavbar from "./TopNavbar";
 import Sidebar from "./Sidebar";
 import PageHeader from "./PageHeader";
 import PostServiceTab from "./PostServiceTab";
+import PostRFQTab from "./PostRFQTab";
 import "./BusinessHub.css";
 
 function BusinessHub() {
@@ -16,13 +17,7 @@ function BusinessHub() {
         <main className="bh-main">
           <PageHeader activeTab={activeTab} onTabChange={setActiveTab} />
 
-          {activeTab === "service" ? (
-            <PostServiceTab />
-          ) : (
-            <div className="bh-card text-muted small">
-              Post an RFQ form isn't part of this build yet.
-            </div>
-          )}
+          {activeTab === "service" ? <PostServiceTab /> : <PostRFQTab />}
         </main>
       </div>
     </div>
