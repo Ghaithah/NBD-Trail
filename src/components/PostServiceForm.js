@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const CATEGORIES = [
   "Civil works",
   "Glazing",
@@ -17,21 +15,30 @@ const STATUS_OPTIONS = ["In stock - ships fast", "Made to order"];
 
 const DESCRIPTION_MAX = 600;
 
-function PostServiceForm() {
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("Civil works");
-  const [description, setDescription] = useState("");
-
-  const [quoteOnly, setQuoteOnly] = useState(false);
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [unit, setUnit] = useState("/project");
-
-  const [status, setStatus] = useState("Made to order");
-  const [leadTime, setLeadTime] = useState("");
-  const [moq, setMoq] = useState("");
-  const [buyNow, setBuyNow] = useState(true);
-
+function PostServiceForm({
+  name,
+  setName,
+  category,
+  setCategory,
+  description,
+  setDescription,
+  quoteOnly,
+  setQuoteOnly,
+  minPrice,
+  setMinPrice,
+  maxPrice,
+  setMaxPrice,
+  unit,
+  setUnit,
+  status,
+  setStatus,
+  leadTime,
+  setLeadTime,
+  moq,
+  setMoq,
+  buyNow,
+  setBuyNow,
+}) {
   return (
     <div className="bh-form-col">
       <div className="bh-card mb-4">

@@ -2,7 +2,7 @@ import { useState } from "react";
 import TopNavbar from "./TopNavbar";
 import Sidebar from "./Sidebar";
 import PageHeader from "./PageHeader";
-import PostServiceForm from "./PostServiceForm";
+import PostServiceTab from "./PostServiceTab";
 import "./BusinessHub.css";
 
 function BusinessHub() {
@@ -17,7 +17,7 @@ function BusinessHub() {
           <PageHeader activeTab={activeTab} onTabChange={setActiveTab} />
 
           {activeTab === "service" ? (
-            <PostServiceForm />
+            <PostServiceTab />
           ) : (
             <div className="bh-card text-muted small">
               Post an RFQ form isn't part of this build yet.

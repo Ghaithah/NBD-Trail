@@ -103,8 +103,21 @@
   border-color: #93c5fd;
 }
 
+.bh-content-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
 .bh-form-col {
+  flex: 1 1 460px;
   max-width: 760px;
+  min-width: 0;
+}
+
+.bh-preview-col {
+  width: 320px;
+  flex-shrink: 0;
 }
 
 .bh-card {
@@ -195,6 +208,67 @@
   text-transform: uppercase;
   letter-spacing: 0.02em;
   vertical-align: middle;
+}
+
+.bh-preview-thumb {
+  height: 140px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.75rem;
+}
+
+.bh-badge-outline {
+  border: 1px solid #d1d5db;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.65rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.bh-steps {
+  list-style: none;
+  counter-reset: bh-step;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bh-steps li {
+  counter-increment: bh-step;
+  position: relative;
+  padding-left: 28px;
+}
+
+.bh-steps li::before {
+  content: counter(bh-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1d4ed8;
+  color: #fff;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1100px) {
+  .bh-content-row {
+    flex-direction: column;
+  }
+  .bh-preview-col {
+    width: 100%;
+  }
 }
 
 @media (max-width: 900px) {
