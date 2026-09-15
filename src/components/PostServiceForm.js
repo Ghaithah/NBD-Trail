@@ -203,7 +203,7 @@ function PostServiceForm({
           </div>
         </div>
 
-        <div className="d-flex justify-content-between align-items-start gap-3">
+        <div className="bh-inset-box d-flex justify-content-between align-items-start gap-3">
           <div>
             <div className="fw-semibold small">
               Enable Buy now
