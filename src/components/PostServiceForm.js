@@ -203,7 +203,15 @@ function PostServiceForm({
           </div>
         </div>
 
-        <div className="bh-inset-box d-flex justify-content-between align-items-start gap-3">
+        <div className="bh-inset-box d-flex align-items-start gap-3">
+          <label className="bh-switch flex-shrink-0">
+            <input
+              type="checkbox"
+              checked={buyNow}
+              onChange={(e) => setBuyNow(e.target.checked)}
+            />
+            <span className="bh-switch-slider"></span>
+          </label>
           <div>
             <div className="fw-semibold small">
               Enable Buy now
@@ -214,14 +222,6 @@ function PostServiceForm({
               standardized, same-spec products.
             </div>
           </div>
-          <label className="bh-switch">
-            <input
-              type="checkbox"
-              checked={buyNow}
-              onChange={(e) => setBuyNow(e.target.checked)}
-            />
-            <span className="bh-switch-slider"></span>
-          </label>
         </div>
       </div>
     </div>
