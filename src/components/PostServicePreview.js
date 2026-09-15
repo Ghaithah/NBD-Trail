@@ -23,7 +23,9 @@ function PostServicePreview({
     <div className="bh-preview-col">
       <div className="bh-card mb-4">
         <div className="bh-card-title small text-uppercase">
-          <i className="bi bi-lightning-charge-fill text-primary"></i>
+          <span className="bh-card-icon bh-card-icon-sm">
+            <i className="bi bi-lightning-charge-fill"></i>
+          </span>
           Live storefront preview
         </div>
 
@@ -32,8 +34,12 @@ function PostServicePreview({
         </div>
 
         <div className="d-flex gap-2 mb-2">
-          <span className="badge bh-badge-outline">{tagLabel}</span>
-          <span className="badge bh-badge-outline">{category.toUpperCase()}</span>
+          <button type="button" className="badge bh-badge-soft bh-badge-btn">
+            {tagLabel}
+          </button>
+          <button type="button" className="badge bh-badge-soft bh-badge-btn">
+            {category.toUpperCase()}
+          </button>
         </div>
 
         <div className="fw-bold mb-1">{name || "Your service name"}</div>
@@ -61,7 +67,9 @@ function PostServicePreview({
 
       <div className="bh-card mb-4">
         <div className="bh-card-title small text-uppercase">
-          <i className="bi bi-lightbulb-fill text-warning"></i>
+          <span className="bh-card-icon bh-card-icon-sm bh-card-icon-warning">
+            <i className="bi bi-lightbulb-fill"></i>
+          </span>
           Tips for high-converting listings
         </div>
         <ul className="list-unstyled small mb-0">
@@ -82,7 +90,9 @@ function PostServicePreview({
 
       <div className="bh-card">
         <div className="bh-card-title small text-uppercase">
-          <i className="bi bi-diagram-3-fill text-primary"></i>
+          <span className="bh-card-icon bh-card-icon-sm">
+            <i className="bi bi-diagram-3-fill"></i>
+          </span>
           What happens after publishing
         </div>
         <ol className="bh-steps small mb-0">

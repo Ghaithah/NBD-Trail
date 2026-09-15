@@ -148,6 +148,30 @@
   margin-bottom: 16px;
 }
 
+.bh-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #eef2ff;
+  color: #1d4ed8;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.bh-card-icon-sm {
+  width: 26px;
+  height: 26px;
+  font-size: 0.8rem;
+}
+
+.bh-card-icon-warning {
+  background: #fef3c7;
+  color: #d97706;
+}
+
 .bh-pill {
   padding: 8px 16px;
   border-radius: 999px;
@@ -220,6 +244,21 @@
   border-radius: 999px;
   letter-spacing: 0.02em;
   vertical-align: middle;
+}
+
+.bh-badge-btn {
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bh-badge-btn:hover {
+  background-color: #dbe4ff;
+}
+
+.bh-badge-btn:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
 }
 
 .bh-preview-thumb {

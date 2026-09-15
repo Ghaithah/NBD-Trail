@@ -43,7 +43,9 @@ function PostServiceForm({
     <div className="bh-form-col">
       <div className="bh-card mb-4">
         <div className="bh-card-title">
-          <i className="bi bi-tag"></i>
+          <span className="bh-card-icon">
+            <i className="bi bi-tag"></i>
+          </span>
           About this service
         </div>
 
@@ -94,7 +96,9 @@ function PostServiceForm({
 
       <div className="bh-card mb-4">
         <div className="bh-card-title">
-          <i className="bi bi-currency-exchange"></i>
+          <span className="bh-card-icon">
+            <i className="bi bi-currency-exchange"></i>
+          </span>
           Pricing
         </div>
 
@@ -160,7 +164,9 @@ function PostServiceForm({
 
       <div className="bh-card">
         <div className="bh-card-title">
-          <i className="bi bi-clock-history"></i>
+          <span className="bh-card-icon">
+            <i className="bi bi-clock-history"></i>
+          </span>
           Availability &amp; terms
         </div>
 
