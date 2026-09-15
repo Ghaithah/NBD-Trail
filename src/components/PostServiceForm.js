@@ -13,6 +13,8 @@ const CATEGORIES = [
 
 const UNITS = ["/project", "/unit", "/tonne", "/m²", "/hour", "/day", "/month"];
 
+const STATUS_OPTIONS = ["In stock - ships fast", "Made to order"];
+
 const DESCRIPTION_MAX = 600;
 
 function PostServiceForm() {
@@ -24,6 +26,11 @@ function PostServiceForm() {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [unit, setUnit] = useState("/project");
+
+  const [status, setStatus] = useState("Made to order");
+  const [leadTime, setLeadTime] = useState("");
+  const [moq, setMoq] = useState("");
+  const [buyNow, setBuyNow] = useState(true);
 
   return (
     <div className="bh-form-col">
@@ -144,8 +151,71 @@ function PostServiceForm() {
         </div>
       </div>
 
-      <div className="bh-card text-muted small">
-        Availability &amp; terms card comes in the next step.
+      <div className="bh-card">
+        <div className="bh-card-title">
+          <i className="bi bi-clock-history"></i>
+          Availability &amp; terms
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label small fw-semibold">Status *</label>
+          <div className="d-flex gap-2 flex-wrap">
+            {STATUS_OPTIONS.map((s) => (
+              <button
+                key={s}
+                type="button"
+                className={`bh-pill ${status === s ? "active" : ""}`}
+                onClick={() => setStatus(s)}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="row g-3 mb-3">
+          <div className="col-6">
+            <label className="form-label small fw-semibold">Lead time *</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="e.g. Ships in 5 days · 8–18 weeks"
+              value={leadTime}
+              onChange={(e) => setLeadTime(e.target.value)}
+            />
+          </div>
+          <div className="col-6">
+            <label className="form-label small fw-semibold">MOQ (optional)</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="e.g. 20t minimum · 100 units"
+              value={moq}
+              onChange={(e) => setMoq(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="d-flex justify-content-between align-items-start gap-3">
+          <div>
+            <div className="fw-semibold small">
+              Enable Buy now
+              <span className="badge bh-badge-soft ms-2">RECOMMENDED FOR SKUs</span>
+            </div>
+            <div className="small text-muted">
+              Buyers can purchase instantly without waiting for a quote. Best for
+              standardized, same-spec products.
+            </div>
+          </div>
+          <label className="bh-switch">
+            <input
+              type="checkbox"
+              checked={buyNow}
+              onChange={(e) => setBuyNow(e.target.checked)}
+            />
+            <span className="bh-switch-slider"></span>
+          </label>
+        </div>
       </div>
     </div>
   );

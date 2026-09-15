@@ -185,6 +185,18 @@
   transform: translateX(20px);
 }
 
+.bh-badge-soft {
+  background: #eef2ff;
+  color: #1d4ed8;
+  font-weight: 600;
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+}
+
 @media (max-width: 900px) {
   .bh-body {
     flex-direction: column;
