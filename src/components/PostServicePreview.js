@@ -8,12 +8,16 @@ function PostServicePreview({
   unit,
   leadTime,
   status,
+  buyNow,
 }) {
   const priceLabel = quoteOnly
     ? "By quote"
     : minPrice
     ? `AED ${minPrice}${maxPrice ? `–${maxPrice}` : ""} ${unit}`
     : `AED — ${unit}`;
+
+  const tagLabel =
+    quoteOnly || !minPrice ? "BY QUOTE" : buyNow ? "BUY NOW" : "REQUEST QUOTE";
 
   return (
     <div className="bh-preview-col">
@@ -28,9 +32,7 @@ function PostServicePreview({
         </div>
 
         <div className="d-flex gap-2 mb-2">
-          <span className="badge bh-badge-outline">
-            {quoteOnly ? "BY QUOTE" : "BUY NOW"}
-          </span>
+          <span className="badge bh-badge-outline">{tagLabel}</span>
           <span className="badge bh-badge-outline">{category.toUpperCase()}</span>
         </div>
 

@@ -26,11 +26,10 @@ function TopNavbar() {
         <div className="d-flex align-items-center">
           <button className="btn btn-light position-relative me-3">
             <i className="bi bi-bell"></i>
+            <span className="bh-notif-dot"></span>
           </button>
           <div className="d-flex align-items-center border rounded-pill px-3 py-1">
-            <span className="bh-org-avatar me-2">
-              <i className="bi bi-building"></i>
-            </span>
+            <span className="bh-org-avatar me-2">AF</span>
             <div className="lh-1 me-2">
               <div className="small fw-semibold">Al Falah Construction</div>
               <div className="small text-success">

@@ -100,6 +100,7 @@ function PostServiceTab() {
           unit={unit}
           leadTime={leadTime}
           status={status}
+          buyNow={buyNow}
         />
       </div>
 
