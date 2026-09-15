@@ -98,15 +98,8 @@ function PostServiceForm({
           Pricing
         </div>
 
-        <div className="d-flex justify-content-between align-items-start gap-3 mb-3">
-          <div>
-            <div className="fw-semibold small">Quote-only listing</div>
-            <div className="small text-muted">
-              Hide pricing — buyers must request a quote. Best for services with high
-              scope variance.
-            </div>
-          </div>
-          <label className="bh-switch">
+        <div className="bh-outline-box d-flex align-items-start gap-3 mb-3">
+          <label className="bh-switch flex-shrink-0">
             <input
               type="checkbox"
               checked={quoteOnly}
@@ -114,6 +107,13 @@ function PostServiceForm({
             />
             <span className="bh-switch-slider"></span>
           </label>
+          <div>
+            <div className="fw-semibold small">Quote-only listing</div>
+            <div className="small text-muted">
+              Hide pricing — buyers must request a quote. Best for services with high
+              scope variance.
+            </div>
+          </div>
         </div>
 
         {!quoteOnly && (
