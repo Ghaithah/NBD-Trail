@@ -56,7 +56,7 @@ function Sidebar() {
                             <span className="text-success">+13%</span>
                         </li>
                     </ul>
-                    <button className="btn btn-primary w-100 btn-sm">Finish setup →</button>
+                    <button className="btn bh-finish-btn w-100">Finish setup →</button>
                 </div>
             </div>
 

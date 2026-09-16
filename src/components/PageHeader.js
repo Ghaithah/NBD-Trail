@@ -29,7 +29,7 @@ function PageHeader({ activeTab, onTabChange }) {
       <div className="d-flex gap-3 flex-wrap">
         <button
           type="button"
-          className={`bh-tab-btn ${activeTab === "service" ? "active" : ""}`}
+          className={`btn bh-tab-btn ${activeTab === "service" ? "active" : ""}`}
           onClick={() => onTabChange("service")}
         >
           <i className="bi bi-tag me-2"></i>
@@ -41,7 +41,7 @@ function PageHeader({ activeTab, onTabChange }) {
 
         <button
           type="button"
-          className={`bh-tab-btn ${activeTab === "rfq" ? "active" : ""}`}
+          className={`btn bh-tab-btn ${activeTab === "rfq" ? "active" : ""}`}
           onClick={() => onTabChange("rfq")}
         >
           <i className="bi bi-file-earmark-text me-2"></i>
