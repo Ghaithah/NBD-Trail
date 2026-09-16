@@ -201,6 +201,7 @@
 .bh-preview-col {
   width: 320px;
   flex-shrink: 0;
+  min-width: 0;
 }
 
 .bh-card {
@@ -389,6 +390,15 @@
   padding: 4px 8px;
   border-radius: 999px;
   background: #fff;
+}
+
+.bh-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .bh-steps {

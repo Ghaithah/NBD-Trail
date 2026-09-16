@@ -42,8 +42,8 @@ function PostServicePreview({
           </button>
         </div>
 
-        <div className="fw-bold mb-1">{name || "Your service name"}</div>
-        <p className="small text-muted mb-3">
+        <div className="fw-bold mb-1 bh-clamp-2">{name || "Your service name"}</div>
+        <p className="small text-muted mb-3 bh-clamp-2">
           {description || "Description will appear here as you type."}
         </p>
 
