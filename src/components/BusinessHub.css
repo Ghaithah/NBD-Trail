@@ -44,6 +44,12 @@
   color: #1f2937;
 }
 
+.bh-logo-img {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+}
+
 .bh-main {
   flex: 1;
   min-width: 0;
