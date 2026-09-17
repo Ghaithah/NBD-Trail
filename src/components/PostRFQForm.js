@@ -63,9 +63,9 @@ function buildMonthGrid(viewDate) {
   return cells;
 }
 
-function DateField({ label, required, value, onChange, placeholder }) {
+function DateField({ label, required, value, onChange, placeholder, minDate }) {
   const [open, setOpen] = useState(false);
-  const [viewDate, setViewDate] = useState(() => fromISODate(value) || new Date());
+  const [viewDate, setViewDate] = useState(() => fromISODate(value) || minDate || new Date());
   const wrapRef = useRef(null);
 
   useEffect(() => {
@@ -82,11 +82,20 @@ function DateField({ label, required, value, onChange, placeholder }) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  const isDisabledDate = (d) => !!minDate && d < minDate;
+
   const goToMonth = (offset) => {
     setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + offset, 1));
   };
 
+  const canGoPrevMonth =
+    !minDate ||
+    viewDate.getFullYear() > minDate.getFullYear() ||
+    (viewDate.getFullYear() === minDate.getFullYear() &&
+      viewDate.getMonth() > minDate.getMonth());
+
   const pickDate = (d) => {
+    if (isDisabledDate(d)) return;
     onChange(toISODate(d));
     setViewDate(d);
     setOpen(false);
@@ -127,7 +136,9 @@ function DateField({ label, required, value, onChange, placeholder }) {
             <button
               type="button"
               className="bh-datepicker-nav"
-              onClick={() => goToMonth(-1)}
+              onClick={() => canGoPrevMonth && goToMonth(-1)}
+              disabled={!canGoPrevMonth}
+              style={!canGoPrevMonth ? { opacity: 0.35, cursor: "not-allowed" } : undefined}
               aria-label="Previous month"
             >
               <i className="bi bi-chevron-left"></i>
@@ -157,7 +168,11 @@ function DateField({ label, required, value, onChange, placeholder }) {
                   key={i}
                   className={`bh-calendar-day ${
                     isSameDay(d, selectedDate) ? "selected" : ""
-                  } ${isSameDay(d, today) ? "today" : ""}`}
+                  } ${isSameDay(d, today) ? "today" : ""} ${
+                    isDisabledDate(d) ? "disabled" : ""
+                  }`}
+                  disabled={isDisabledDate(d)}
+                  style={isDisabledDate(d) ? { color: "#d1d5db", cursor: "not-allowed" } : undefined}
                   onClick={() => pickDate(d)}
                 >
                   {d.getDate()}
@@ -173,6 +188,8 @@ function DateField({ label, required, value, onChange, placeholder }) {
               type="button"
               className="bh-quick-btn primary"
               onClick={() => handleQuick(0)}
+              disabled={isDisabledDate(today)}
+              style={isDisabledDate(today) ? { opacity: 0.5, cursor: "not-allowed" } : undefined}
             >
               Today
             </button>
@@ -216,6 +233,10 @@ function PostRFQForm({
     if (files.length) setAttachments([...attachments, ...files]);
     e.target.value = "";
   };
+
+  const tomorrow = new Date();
+  tomorrow.setHours(0, 0, 0, 0);
+  tomorrow.setDate(tomorrow.getDate() + 1);
 
   return (
     <div className="bh-form-col">
@@ -332,6 +353,7 @@ function PostRFQForm({
               value={needDeliveryBy}
               onChange={setNeedDeliveryBy}
               placeholder="Select a date"
+              minDate={tomorrow}
             />
           </div>
           <div className="col-md-6">
@@ -341,6 +363,7 @@ function PostRFQForm({
               value={rfqClosesOn}
               onChange={setRfqClosesOn}
               placeholder="Select a date"
+              minDate={tomorrow}
             />
           </div>
         </div>

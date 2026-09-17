@@ -15,6 +15,13 @@ const STATUS_OPTIONS = ["In stock - ships fast", "Made to order"];
 
 const DESCRIPTION_MAX = 600;
 
+function clampToNonNegative(value) {
+  if (value === "" || value === null || value === undefined) return value;
+  const num = Number(value);
+  if (Number.isNaN(num)) return value;
+  return num < 0 ? "0" : value;
+}
+
 function PostServiceForm({
   name,
   setName,
@@ -39,6 +46,32 @@ function PostServiceForm({
   buyNow,
   setBuyNow,
 }) {
+  const minPriceNum = minPrice !== "" && !Number.isNaN(Number(minPrice)) ? Number(minPrice) : 0;
+
+  const handleMinPriceBlur = () => {
+    const clamped = clampToNonNegative(minPrice);
+    setMinPrice(clamped);
+
+    const clampedNum = clamped !== "" && !Number.isNaN(Number(clamped)) ? Number(clamped) : null;
+    if (
+      clampedNum !== null &&
+      maxPrice !== "" &&
+      !Number.isNaN(Number(maxPrice)) &&
+      Number(maxPrice) < clampedNum
+    ) {
+      setMaxPrice(clamped);
+    }
+  };
+
+  const handleMaxPriceBlur = () => {
+    let clamped = clampToNonNegative(maxPrice);
+    const clampedNum = clamped !== "" && !Number.isNaN(Number(clamped)) ? Number(clamped) : null;
+    if (clampedNum !== null && clampedNum < minPriceNum) {
+      clamped = String(minPriceNum);
+    }
+    setMaxPrice(clamped);
+  };
+
   return (
     <div className="bh-form-col">
       <div className="bh-card mb-4">
@@ -128,8 +161,10 @@ function PostServiceForm({
                 type="number"
                 className="form-control"
                 placeholder="e.g. 2,400"
+                min="0"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
+                onBlur={handleMinPriceBlur}
               />
             </div>
             <div className="col-6">
@@ -138,8 +173,10 @@ function PostServiceForm({
                 type="number"
                 className="form-control"
                 placeholder="e.g. 2,800"
+                min={minPriceNum}
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
+                onBlur={handleMaxPriceBlur}
               />
             </div>
           </div>
