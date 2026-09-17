@@ -47,20 +47,20 @@ function PostServicePreview({
           {description || "Description will appear here as you type."}
         </p>
 
-        <div className="fw-semibold mb-3">{priceLabel}</div>
+        <div className="fw-semibold mb-3 bh-clamp-2">{priceLabel}</div>
 
-        <div className="d-flex justify-content-between small border-top pt-2">
-          <div>
+        <div className="d-flex gap-2 small">
+          <div className="bh-stat-box">
             <div className="text-muted text-uppercase" style={{ fontSize: "0.65rem" }}>
               Lead time
             </div>
-            <div>{leadTime || "—"}</div>
+            <div className="text-truncate">{leadTime || "—"}</div>
           </div>
-          <div className="text-end">
+          <div className="bh-stat-box">
             <div className="text-muted text-uppercase" style={{ fontSize: "0.65rem" }}>
               Status
             </div>
-            <div>{status}</div>
+            <div className="text-truncate">{status}</div>
           </div>
         </div>
       </div>
