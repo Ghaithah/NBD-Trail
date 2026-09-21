@@ -155,7 +155,7 @@ function PostServiceForm({
 
         {!quoteOnly && (
           <div className="row g-3 mb-3">
-            <div className="col-6">
+            <div className="col-12 col-sm-6">
               <label className="form-label small fw-semibold">Min price (AED) *</label>
               <input
                 type="number"
@@ -167,7 +167,7 @@ function PostServiceForm({
                 onBlur={handleMinPriceBlur}
               />
             </div>
-            <div className="col-6">
+            <div className="col-12 col-sm-6">
               <label className="form-label small fw-semibold">Max price (AED)</label>
               <input
                 type="number"
@@ -224,7 +224,7 @@ function PostServiceForm({
         </div>
 
         <div className="row g-3 mb-3">
-          <div className="col-6">
+          <div className="col-12 col-sm-6">
             <label className="form-label small fw-semibold">Lead time *</label>
             <input
               type="text"
@@ -234,7 +234,7 @@ function PostServiceForm({
               onChange={(e) => setLeadTime(e.target.value)}
             />
           </div>
-          <div className="col-6">
+          <div className="col-12 col-sm-6">
             <label className="form-label small fw-semibold">MOQ (optional)</label>
             <input
               type="text"
