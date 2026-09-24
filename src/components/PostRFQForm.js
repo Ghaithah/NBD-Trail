@@ -17,6 +17,9 @@ const DESCRIPTION_MAX = 600;
 
 const DOW = ["M", "T", "W", "T", "F", "S", "S"];
 
+// Keys that would let a number input accept negative / exponent values
+const BLOCKED_NUMBER_KEYS = ["-", "+", "e", "E"];
+
 function toISODate(d) {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
@@ -234,6 +237,22 @@ function PostRFQForm({
     e.target.value = "";
   };
 
+  // Min budget: never allow negative values (typed, pasted, or via spinner)
+  const handleMinBudgetKeyDown = (e) => {
+    if (BLOCKED_NUMBER_KEYS.includes(e.key)) e.preventDefault();
+  };
+
+  const handleMinBudgetChange = (e) => {
+    const v = e.target.value;
+    if (v === "") {
+      setMinBudget("");
+      return;
+    }
+    const n = Number(v);
+    if (Number.isNaN(n) || n < 0) return;
+    setMinBudget(v);
+  };
+
   const tomorrow = new Date();
   tomorrow.setHours(0, 0, 0, 0);
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -383,8 +402,11 @@ function PostRFQForm({
             type="number"
             className="form-control"
             placeholder="e.g. 50,000"
+            min="0"
+            inputMode="decimal"
             value={minBudget}
-            onChange={(e) => setMinBudget(e.target.value)}
+            onKeyDown={handleMinBudgetKeyDown}
+            onChange={handleMinBudgetChange}
           />
         </div>
 
