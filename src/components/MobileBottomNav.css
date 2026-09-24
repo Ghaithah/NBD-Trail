@@ -1,0 +1,321 @@
+/* ==========================================================================
+   Mobile bottom navigation + "More" sheet
+   Everything here is scoped to phones (<= 768px). On larger screens the
+   nav / sheet are display:none and the page looks exactly as before.
+   ========================================================================== */
+
+.bh-mnav,
+.bh-more-backdrop,
+.bh-more-sheet {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .bh-mnav,
+  .bh-more-backdrop,
+  .bh-more-sheet {
+    display: block;
+
+    /* palette (tweak here) */
+    --mn-ink: #1f2937;
+    --mn-muted: #6b7280;
+    --mn-accent: #1d4ed8;
+    --mn-accent-soft: #eef2ff;
+    --mn-border: #e5e7eb;
+    --mn-red: #dc2626;
+  }
+
+  /* ---------- Page: make room for the bar (background is untouched) ------ */
+
+  .bh-app.bh-app--mnav {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+
+  /* The bottom bar replaces the sidebar's link list on phones
+     (profile-strength / promo cards in the sidebar are kept). */
+  .bh-app.bh-app--mnav .bh-sidebar > nav {
+    display: none;
+  }
+
+  /* ---------- Bottom bar -------------------------------------------------- */
+
+  .bh-mnav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1030;
+    padding: 0 6px env(safe-area-inset-bottom);
+    background: #fff;
+    border-top: 1px solid var(--mn-border);
+    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.06);
+  }
+
+  .bh-mnav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 68px;
+  }
+
+  .bh-mnav-cell {
+    min-width: 0;
+  }
+
+  .bh-mnav-item {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: none;
+    width: 100%;
+    height: 100%;
+    padding: 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    color: var(--mn-muted);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.15s ease;
+  }
+
+  .bh-mnav-item:focus-visible {
+    outline: 2px solid var(--mn-accent);
+    outline-offset: -4px;
+    border-radius: 14px;
+  }
+
+  .bh-mnav-icon {
+    font-size: 22px;
+    line-height: 22px;
+    height: 22px;
+  }
+
+  .bh-mnav-item.active {
+    color: var(--mn-accent);
+    font-weight: 700;
+  }
+
+  .bh-mnav-label {
+    white-space: nowrap;
+  }
+
+  /* centre "AI" button: raised, deep indigo, soft glow */
+  .bh-mnav-item--primary {
+    color: var(--mn-accent);
+    font-weight: 700;
+  }
+
+  .bh-mnav-ai {
+    width: 44px;
+    height: 44px;
+    margin-top: -23px;
+    margin-bottom: 1px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 20px;
+    background: linear-gradient(135deg, #0b1b3d, #123a7a);
+    box-shadow: 0 0 0 4px #fff, 0 8px 18px rgba(18, 58, 122, 0.35);
+    transition: transform 0.15s ease;
+  }
+
+  .bh-mnav-item--primary:active .bh-mnav-ai {
+    transform: scale(0.94);
+  }
+
+  /* ---------- "More" sheet ------------------------------------------------ */
+
+  .bh-more-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1040;
+    background: rgba(15, 23, 42, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+  }
+
+  .bh-more-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.25s ease, visibility 0s;
+  }
+
+  .bh-more-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 0 16px calc(20px + env(safe-area-inset-bottom));
+    border-radius: 28px 28px 0 0;
+    background: #fff;
+    box-shadow: 0 -12px 40px rgba(15, 23, 42, 0.18);
+    text-align: left;
+    transform: translateY(100%);
+    visibility: hidden;
+    transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1),
+      visibility 0s linear 0.32s;
+  }
+
+  .bh-more-sheet.open {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s;
+  }
+
+  .bh-more-drag {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 8px;
+    touch-action: none;
+    cursor: grab;
+  }
+
+  .bh-more-grabber {
+    width: 38px;
+    height: 4px;
+    border-radius: 999px;
+    background: #d1d5db;
+  }
+
+  .bh-more-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 0 14px;
+  }
+
+  .bh-more-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--mn-ink);
+  }
+
+  .bh-more-close {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #f3f4f6;
+    color: var(--mn-ink);
+    font-size: 13px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .bh-more-close:focus-visible,
+  .bh-more-tile:focus-visible,
+  .bh-more-signout:focus-visible {
+    outline: 2px solid var(--mn-accent);
+    outline-offset: 2px;
+  }
+
+  .bh-more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .bh-more-tile {
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 82px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: left;
+    color: var(--mn-ink);
+    background: #f5f6f8;
+    border: 1px solid var(--mn-border);
+    border-radius: 16px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .bh-more-tile:active {
+    transform: scale(0.97);
+    background: var(--mn-accent-soft);
+  }
+
+  .bh-more-tile.active .bh-more-tile-icon {
+    background: var(--mn-accent);
+    color: #fff;
+  }
+
+  .bh-more-tile-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    color: var(--mn-accent);
+    background: var(--mn-accent-soft);
+  }
+
+  .bh-more-tile-label {
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .bh-more-signout {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 48px;
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid #fecaca;
+    border-radius: 16px;
+    background: #fef2f2;
+    color: var(--mn-red);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .bh-more-signout i {
+    font-size: 17px;
+  }
+
+  .bh-more-signout:active {
+    background: #fee2e2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bh-more-backdrop,
+  .bh-more-sheet,
+  .bh-mnav-ai,
+  .bh-more-tile {
+    transition: none !important;
+  }
+}
